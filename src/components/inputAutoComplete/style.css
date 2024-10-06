@@ -1,0 +1,51 @@
+.App {
+    padding: 20px;
+    display: flex;
+    width: 50%;
+    min-width: 250px;
+    margin-top: 50px;
+}
+
+.input-container {
+    width: 100%;
+    position: relative;
+    padding-right: 34px;
+}
+
+input {
+    padding: 10px 15px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 20px;
+}
+
+.suggestions {
+    list-style: none;
+    border: 1px solid #ddd;
+    border-top: none;
+    max-height: 150px;
+    overflow-y: auto;
+    width: calc(100% - 20px);;
+    position: absolute;
+    color: #ddd;
+    margin-left: 10px;
+    z-index: 1;
+}
+
+.suggestions li {
+    padding: 10px;
+    cursor: pointer;
+    background-color: var(--color-body-dark);
+}
+
+.suggestions li:hover {
+    background-color: #f0f0f0;
+    color: black;
+}
+
+.App button{
+    background-color: transparent;
+    border: none;
+    /* margin-left: 10px; */
+    cursor: pointer;
+}

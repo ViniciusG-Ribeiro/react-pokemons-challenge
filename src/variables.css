@@ -1,0 +1,8 @@
+:root{
+    --color-body-ligth: #d1d1d1;
+    /* --color-body-ligth: #ffffff; */
+    /* --color-secund-ligth: rgb(184, 181, 181); */
+    --color-secund-ligth: rgb(209, 209, 209);
+    --color-body-dark: rgb(36, 36, 36);
+    --color-secund-dark: rgb(74, 74, 74);
+}
