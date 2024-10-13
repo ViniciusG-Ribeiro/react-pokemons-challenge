@@ -1,8 +1,31 @@
-:root{
+:root {
     --color-body-ligth: #d1d1d1;
     /* --color-body-ligth: #ffffff; */
     /* --color-secund-ligth: rgb(184, 181, 181); */
     --color-secund-ligth: rgb(209, 209, 209);
     --color-body-dark: rgb(36, 36, 36);
     --color-secund-dark: rgb(74, 74, 74);
+
+    --color-type-1: #9099A1;
+    --color-type-2: #CE4069; 
+    --color-type-3: #8FA8DD;
+    --color-type-4: #AB6AC8;
+    --color-type-5: #D97746;
+    --color-type-6: #C7B78B;
+    --color-type-7: #90C12C;
+    --color-type-8: #5269AC;
+    --color-type-9: #5A8EA1;
+    --color-type-10: #FF9C54;
+    --color-type-11: #4D90D5;
+    --color-type-12: #63BB5B;
+    --color-type-13: #F3D23B;
+    --color-type-14: #F97176;
+    --color-type-15: #74CEC0;
+    --color-type-16: #0A6DC4;
+    --color-type-17: #5A5366;
+    --color-type-18: #EC8FE6;
+    --color-type-19: linear-gradient(135deg, #CE4069,#8FA8DD,#AB6AC8,#D97746,#C7B78B,#cbeb58,#5A8EA1,#63BB5B,#74CEC0,#F3D23B,#F97176,#0A6DC4,#FF9C54,#EC8FE6);
+    --color-type-10001: #693E28;
+
+
 }

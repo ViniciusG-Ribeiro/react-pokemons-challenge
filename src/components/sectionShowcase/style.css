@@ -2,8 +2,7 @@
     border: 2px solid #ffffff;
     border-radius: 10px;
     width: 90%;
-    /* height: 100%; */
-    margin-top: 30px;
+    margin-top: 45px;
     display: grid;
     background-color: rgba(162, 161, 163, 0.548);
 }
@@ -27,11 +26,52 @@
 @media (max-width: 700px) {
     .container-cards{
         grid-template-columns: repeat(2, 1fr);
+        padding: 10px;
+        grid-gap: 10px;
     }
+    
 }
 
-.container-cards div{
-    background-color: rgb(47, 0, 255);
-    aspect-ratio: 2 / 3; /* Mantém a altura maior que a largura */
+.card-section{
+    height: 100%;
+    /* padding: 5px; */
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+}
+
+.container-pokemon{
+    height: 45% ;
+    background: url('/fundo-painel.jpg') no-repeat center center / cover;
+    display: flex;
+    justify-content: center;
     border-radius: 10px;
+    margin: 5px;
+}
+
+.img-pokemon{
+    height: 100% ;
+}
+
+.container-info{
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.img-type-pokemon{
+    border: 2px solid #ffffff;
+    border-radius: 100%;
+    width:30px;
+    margin: 0 5px;
+}
+
+.container-stats{
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
 }
