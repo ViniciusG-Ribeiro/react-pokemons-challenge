@@ -23,7 +23,7 @@ export default function CardPokemon(props) {
                         }
                     </div>
                     
-                    <h3 style={{margin: "10px 0"}} >weight: {props.weight} kg </h3>
+                    <h3>Weight: {props.weight} kg </h3>
 
                     <div className="container-stats">
                         {/* props.stats[0].base_stat */}
@@ -46,6 +46,7 @@ const DivCard = styled.div`
     background-color: #F8E62F;
     aspect-ratio: 2 / 3; /* Mantém a altura maior que a largura */
     padding: 8px;
+    cursor: pointer;
     
     @media (max-width: 700px) {
         padding: 4px;

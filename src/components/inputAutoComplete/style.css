@@ -6,6 +6,12 @@
     margin-top: 50px;
 }
 
+@media (max-width: 700px) {
+    .App {
+        margin-top: 10px;
+    }
+}
+
 .input-container {
     width: 100%;
     position: relative;
@@ -46,6 +52,5 @@ input {
 .App button{
     background-color: transparent;
     border: none;
-    /* margin-left: 10px; */
     cursor: pointer;
 }
