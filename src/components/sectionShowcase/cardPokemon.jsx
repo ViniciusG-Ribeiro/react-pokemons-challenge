@@ -1,6 +1,5 @@
 import React from "react"
 import styled from 'styled-components'
-import { ThemeContext } from "../../context/theme-context";
 
 export default function CardPokemon(props) {
 
