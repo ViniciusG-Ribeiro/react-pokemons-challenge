@@ -21,7 +21,7 @@ function InputAutoComplete({ list }) {
             if (isNumeric) {
                 const number = parseInt(value, 10);
                 filteredSuggestions = list.filter(option =>
-                    option.numero === number
+                    option.order === number
                 );
 
             } else {
@@ -60,7 +60,7 @@ function InputAutoComplete({ list }) {
                                 key={index}
                                 onClick={() => handleSelect(suggestion)}
                             >
-                                {suggestion.nome} #{suggestion.numero}
+                                {suggestion.nome} #{suggestion.order}
                             </li>
                         ))}
                     </ul>

@@ -12,36 +12,24 @@ import { fetchPokemons } from './services/consultaPoke';
 
 function App() {
 
-  // useEffect(() => {
-  //   console.log(fetchPokemons());
-  // }, []);
-
-  // In App.jsx
-  const [pokemons, setPokemons] = useState([]); // Add this state
+  const [pokemons, setPokemons] = useState([]);
+  const [pokemonsFiltrados, setPokemonsFiltrados] = useState([]); // Novo estado
 
   useEffect(() => {
     const loadPokemons = async () => {
       const data = await fetchPokemons();
       setPokemons(data);
-      console.log(data); // This will show just the Array(10)
+      
+      // Atualiza o estado dos pokemons filtrados
+      const filtrados = data.map(datas => ({
+        nome: datas.nome, 
+        order: datas.order
+      }));
+      setPokemonsFiltrados(filtrados);
     };
 
     loadPokemons();
   }, []);
-
-  let pokemonsfiltrados = [
-    { nome: 'Apple', numero: 1 },
-    { nome: 'Banana', numero: 2 },
-    { nome: 'Orange', numero: 3 },
-    { nome: 'Mango', numero: 4 },
-    { nome: 'Pineapple', numero: 5 },
-    { nome: 'Grapes', numero: 6 },
-    { nome: 'Strawberry', numero: 7 },
-    { nome: 'Blueberry', numero: 8 },
-    { nome: 'Raspberry', numero: 9 },
-    { nome: 'Blackberry', numero: 10 }
-  ];
-
 
   return (
     <ThemeProvider>
@@ -52,7 +40,7 @@ function App() {
       </header>
       <main>
         <ButtonToggleTheme />
-        <InputAutoComplete list={pokemonsfiltrados} />
+        <InputAutoComplete list={pokemonsFiltrados} />
         <TypeFilterPokemon />
         <SectionShowCase />
 
