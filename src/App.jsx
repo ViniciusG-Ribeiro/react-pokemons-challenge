@@ -7,29 +7,51 @@ import { createGlobalStyle } from "styled-components";
 import TypeFilterPokemon from './components/type-filter-pokemon/type-filter-pokemon';
 import { ThemeProvider, ThemeContext } from './context/theme-context';
 import SectionShowCase from './components/sectionShowcase/sectionShowCase';
-import { fetchPokemons } from './services/consultaPoke';
-// import { fetchPokemons } from './services/pokeInfoCard';
+import { fetchAllPokemons, fetch10Pokemons } from './services/consultaPoke';
+// import { fetchAllPokemons } from './services/pokeInfoCard';
 
 function App() {
 
   const [pokemons, setPokemons] = useState([]);
-  const [pokemonsFiltrados, setPokemonsFiltrados] = useState([]); // Novo estado
+  const [pokemonsInput, setPokemonsInput] = useState([]);
+  const [pokemonsInit, setPokemonsInit] = useState([]); 
+  const [pokemonsLoaded, setPokemonsLoaded] = useState();
 
   useEffect(() => {
     const loadPokemons = async () => {
-      const data = await fetchPokemons();
-      setPokemons(data);
+      // consulta dos 10 primeiros para carregamento rápido
+      const InitPokemons = await fetch10Pokemons();
+      setPokemonsInit(InitPokemons);
+
+      //consulta de todos os pokemons para input e botão see more
+      const allPokemonsData = await fetchAllPokemons();
+      setPokemons(allPokemonsData);
+
+      //console.log(data);
       
-      // Atualiza o estado dos pokemons filtrados
-      const filtrados = data.map(datas => ({
-        nome: datas.nome, 
-        order: datas.order
+      // Atualiza o estado dos pokemons no input autocomplete
+      const filtrados = allPokemonsData.map(allPokemonsData => ({
+        nome: allPokemonsData.nome, 
+        id: allPokemonsData.id
       }));
-      setPokemonsFiltrados(filtrados);
+      setPokemonsInput(filtrados);
     };
 
     loadPokemons();
   }, []);
+
+  useEffect(() => {
+    setPokemonsLoaded(pokemonsInit)
+  }, [pokemonsInit]);
+
+  // useEffect(() => {
+  //   console.log("pokemonsLoaded alterou: ", pokemonsLoaded)
+  // }, [pokemonsLoaded]);
+
+  useEffect(() => {
+    setPokemonsLoaded(pokemons)
+  }, [pokemons]);
+
 
   return (
     <ThemeProvider>
@@ -40,9 +62,9 @@ function App() {
       </header>
       <main>
         <ButtonToggleTheme />
-        <InputAutoComplete list={pokemonsFiltrados} />
+        <InputAutoComplete list={pokemonsInput} />
         <TypeFilterPokemon />
-        <SectionShowCase />
+        <SectionShowCase pokemons={pokemonsLoaded} />
 
       </main >
     </ThemeProvider>

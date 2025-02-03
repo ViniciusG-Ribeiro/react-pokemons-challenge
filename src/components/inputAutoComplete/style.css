@@ -23,6 +23,7 @@ input {
     width: 100%;
     font-size: 16px;
     border-radius: 20px;
+    text-transform: capitalize;
 }
 
 .suggestions {
@@ -42,6 +43,7 @@ input {
     padding: 10px;
     cursor: pointer;
     background-color: var(--color-body-dark);
+    text-transform: capitalize;
 }
 
 .suggestions li:hover {

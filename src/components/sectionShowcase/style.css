@@ -17,8 +17,6 @@
     grid-gap: 25px;
 }
 
-
-
 .card-section{
     height: 100%;
     display: flex;
@@ -48,6 +46,7 @@
 
 .container-info h2{
     margin: 2%;
+    text-transform: capitalize;
 }
 
 .container-info h3{
@@ -109,6 +108,10 @@
         grid-gap: 10px;
     }
 
+    .container-cards{
+        grid-template-columns: 1fr;
+    }
+
     .container-info h3{
         font-size: 1.2em;
     }
@@ -122,12 +125,10 @@
     .section-showCase{
         width: 100%;
     }
-    .container-cards{
-        grid-template-columns: 1fr;
-    }
+
     .container-info h3{
         font-size: 1.3em;
-        margin: 10px auto;
+        margin: 4px auto;
     }
     .container-stats{
         gap: 5px;

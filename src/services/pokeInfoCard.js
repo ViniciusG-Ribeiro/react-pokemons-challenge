@@ -10,14 +10,22 @@ export function consultaInfosCard(results) {
 
             const responseDetails = await axios.get(`${pokemons.url}`)
 
-            // console.log(responseDetails);
+            //  console.log(responseDetails);
+
+            const extractTypeId = (typeObj) => {
+                if (!typeObj) return null;
+                const urlSegments = typeObj.type.url.split("/");
+                return urlSegments[urlSegments.length - 2]; // Penúltimo segmento da URL
+              };
 
             return {
                 nome: responseDetails.data.name,
-                order: responseDetails.data.order,
+                id: responseDetails.data.id,
                 image: responseDetails.data.sprites.other["official-artwork"].front_default,
-                type1: responseDetails.data.types[0],
-                type2: responseDetails.data.types[1] || null,
+                // type1: responseDetails.data.types[0],
+                // type2: responseDetails.data.types[1] || null,
+                type1: extractTypeId(responseDetails.data.types[0]),
+                type2: responseDetails.data.types[1] ? extractTypeId(responseDetails.data.types[1]) : null, 
                 weight: responseDetails.data.weight,
                 height: responseDetails.data.height,
                 stats_hp: responseDetails.data.stats[0].base_stat,
@@ -27,6 +35,7 @@ export function consultaInfosCard(results) {
                 stats_special_defense: responseDetails.data.stats[4].base_stat,
                 stats_speed: responseDetails.data.stats[5].base_stat,
                 abilities: responseDetails.data.abilities,
+                moves: responseDetails.data.moves,
             }
 
 

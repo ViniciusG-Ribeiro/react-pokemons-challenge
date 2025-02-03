@@ -22,14 +22,13 @@ export default function CardPokemon(props) {
                         }
                     </div>
                     
-                    <h3>Weight: {props.weight} kg </h3>
+                    <h3>Weight: {props.weight /10} kg </h3>
 
                     <div className="container-stats">
-                        {/* props.stats[0].base_stat */}
                         <h3>HP: {props.stats[0]}</h3>
                         <h3>Attack: {props.stats[1]}</h3>
                         <h3>Defense: {props.stats[2]}</h3>
-                        <h3>Speed: {props.stats[5]}</h3>
+                        <h3>Speed: {props.stats[3]}</h3>
                     </div>
 
                 </div>
@@ -48,6 +47,7 @@ const DivCard = styled.div`
     cursor: pointer;
     
     @media (max-width: 700px) {
+        aspect-ratio: 5 / 6;
         padding: 4px;
     }
 }

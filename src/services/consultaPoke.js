@@ -5,7 +5,7 @@
 import axios from "axios";
 import { consultaInfosCard } from "./pokeInfoCard";
 
-export async function fetchPokemons() {
+async function fetchAllPokemons() {
     try {
         // const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=1025&offset=0`)
 
@@ -13,7 +13,7 @@ export async function fetchPokemons() {
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=1025&offset=0`)
 
 
-         console.log(response.data.results)
+        // console.log(response.data.results)
 
         // teste
         
@@ -28,3 +28,29 @@ export async function fetchPokemons() {
     }
 
 }
+
+async function fetch10Pokemons() {
+    try {
+        // const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=1025&offset=0`)
+
+
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=0`)
+
+
+        // console.log(response.data.results)
+
+        // teste
+        
+        let pokes = await Promise.all(
+            consultaInfosCard(response.data.results)
+        );
+
+        return pokes;
+
+    } catch (error) {
+        console.error(`Error fetching Pokemon: ${error.message}`)
+    }
+
+}
+
+export{fetchAllPokemons, fetch10Pokemons }

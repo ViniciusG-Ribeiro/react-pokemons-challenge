@@ -1,42 +1,62 @@
 import React from "react"
 import styled from 'styled-components'
-import { useContext } from "react";
+import { useState, useEffect } from 'react';
 import './style.css'
 import CardPokemon from "./cardPokemon";
 
-const arrayStats = [39,52,43,60,50,65]
 
-export default function SectionShowCase(props) {
 
-    return (
-        <>
-            <section className="section-showCase">
-                <div className="container-cards">
-                    <CardPokemon pokemonUrl='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png' namePokemon='Charmander' type1='10' type2='' weight='85' stats= {arrayStats} />
 
-                    <CardPokemon pokemonUrl='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png' namePokemon='Blastoise' type1='11' type2='' weight='855' stats= {[79,83,100,85,105,78]} />
-                    
-                    <CardPokemon pokemonUrl='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png' namePokemon='Dragonite' type1='16' type2='3' weight='2100' stats= {[91,134,95,100,100,80]} />
-                    
-                    <CardPokemon pokemonUrl='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/4.gif' namePokemon='Charmander' type1='10' type2='' weight='85' stats= {arrayStats} />
 
-                    <CardPokemon pokemonUrl='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/4.gif' namePokemon='Charmander' type1='10' type2='' weight='85' stats= {arrayStats} />
+export default function SectionShowCase({ pokemons }) {
 
-                    <CardPokemon pokemonUrl='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/4.gif' namePokemon='Charmander' type1='10' type2='' weight='85' stats= {arrayStats} />
+  const [quantityViewed, setQuantityViewed] = useState(10);
+  const [pokemonViewed, setPokemonViewed] = useState([]);
 
-                    <CardPokemon pokemonUrl='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/4.gif' namePokemon='Charmander' type1='10' type2='' weight='85' stats= {arrayStats} />
+  useEffect(() => {
+    setPokemonViewed(pokemons); // Atualiza os Pokémon quando a prop mudar
+  }, [pokemons]);
 
-                    <CardPokemon pokemonUrl='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/4.gif' namePokemon='Charmander' type1='10' type2='' weight='85' stats= {arrayStats} />
+  const incrementQuantityViewed = () => {
+    setQuantityViewed((prevQuantity) => prevQuantity + 10); //10 pokemons conforme solicitado no desafio
+  }
 
-                    <CardPokemon pokemonUrl='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/4.gif' namePokemon='Charmander' type1='10' type2='' weight='85' stats= {arrayStats} />
-                    
-                    <CardPokemon pokemonUrl='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/95.png' namePokemon='Charmander' type1='10' type2='' weight='85' stats= {arrayStats} />
-                </div>
-                <Button>See more</Button>
-            </section>
+  // React.useEffect(() => {
 
-        </>
-    )
+  //   console.log(`Quantidade de cards visualizados: ${quantityViewed}`);
+
+  // }, [quantityViewed]);
+
+  // console.log("showCase", props.pokemons)
+
+
+
+
+  // useEffect(() => {
+  //   console.log("pokemonViewed", pokemonViewed)
+  // }, [pokemonViewed]);
+
+  return (
+    <>
+      <section className="section-showCase">
+        <div className="container-cards">
+          {(pokemonViewed || []).slice(0, quantityViewed).map((pokemon, index) => (
+            <CardPokemon
+              key={index}
+              pokemonUrl={pokemon.image}
+              namePokemon={pokemon.nome}
+              type1={pokemon.type1}
+              type2={pokemon.type2 || ""}
+              weight={pokemon.weight}
+              stats={[pokemon.stats_hp, pokemon.stats_attack, pokemon.stats_defense, pokemon.stats_speed]}
+            />
+          ))}
+        </div>
+        <Button onClick={incrementQuantityViewed}>See more</Button>
+      </section>
+
+    </>
+  )
 };
 
 const Button = styled.button`
