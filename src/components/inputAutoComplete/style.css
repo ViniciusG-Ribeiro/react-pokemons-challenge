@@ -23,7 +23,7 @@ input {
     width: 100%;
     font-size: 16px;
     border-radius: 20px;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 
 .suggestions {
@@ -51,8 +51,9 @@ input {
     color: black;
 }
 
-.App button{
-    background-color: transparent;
-    border: none;
+.search-icon{
+    position: absolute;
+    right: -50px;
+    top: 0;
     cursor: pointer;
 }

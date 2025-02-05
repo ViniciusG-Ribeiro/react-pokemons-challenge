@@ -21,21 +21,6 @@ export default function SectionShowCase({ pokemons }) {
     setQuantityViewed((prevQuantity) => prevQuantity + 10); //10 pokemons conforme solicitado no desafio
   }
 
-  // React.useEffect(() => {
-
-  //   console.log(`Quantidade de cards visualizados: ${quantityViewed}`);
-
-  // }, [quantityViewed]);
-
-  // console.log("showCase", props.pokemons)
-
-
-
-
-  // useEffect(() => {
-  //   console.log("pokemonViewed", pokemonViewed)
-  // }, [pokemonViewed]);
-
   return (
     <>
       <section className="section-showCase">

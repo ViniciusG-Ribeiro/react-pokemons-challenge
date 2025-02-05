@@ -7,8 +7,8 @@ import { createGlobalStyle } from "styled-components";
 import TypeFilterPokemon from './components/type-filter-pokemon/type-filter-pokemon';
 import { ThemeProvider, ThemeContext } from './context/theme-context';
 import SectionShowCase from './components/sectionShowcase/sectionShowCase';
-import { fetchAllPokemons, fetch10Pokemons } from './services/consultaPoke';
-// import { fetchAllPokemons } from './services/pokeInfoCard';
+import { fetchAllPokemons, fetch10Pokemons} from './services/consultaPoke';
+
 
 function App() {
 
@@ -16,6 +16,18 @@ function App() {
   const [pokemonsInput, setPokemonsInput] = useState([]);
   const [pokemonsInit, setPokemonsInit] = useState([]); 
   const [pokemonsLoaded, setPokemonsLoaded] = useState();
+
+  const handleSearchResult = (pokemon) => {
+    setPokemonsLoaded(pokemon); // Atualiza o estado com o Pokémon encontrado
+  };
+
+  const handleTypeSearch = (pokemon) => {
+    setPokemonsLoaded(pokemon); // Atualiza o estado com o Pokémon encontrado
+  };
+
+  const returnAll = () => {
+    setPokemonsLoaded(pokemons); // Atualiza o estado com o Pokémon encontrado
+  };
 
   useEffect(() => {
     const loadPokemons = async () => {
@@ -34,6 +46,7 @@ function App() {
         nome: allPokemonsData.nome, 
         id: allPokemonsData.id
       }));
+
       setPokemonsInput(filtrados);
     };
 
@@ -43,10 +56,6 @@ function App() {
   useEffect(() => {
     setPokemonsLoaded(pokemonsInit)
   }, [pokemonsInit]);
-
-  // useEffect(() => {
-  //   console.log("pokemonsLoaded alterou: ", pokemonsLoaded)
-  // }, [pokemonsLoaded]);
 
   useEffect(() => {
     setPokemonsLoaded(pokemons)
@@ -62,8 +71,8 @@ function App() {
       </header>
       <main>
         <ButtonToggleTheme />
-        <InputAutoComplete list={pokemonsInput} />
-        <TypeFilterPokemon />
+        <InputAutoComplete list={pokemonsInput}  onSearchResult={handleSearchResult}/>
+        <TypeFilterPokemon onTypeSearch={handleTypeSearch} onReturn={returnAll} />
         <SectionShowCase pokemons={pokemonsLoaded} />
 
       </main >
