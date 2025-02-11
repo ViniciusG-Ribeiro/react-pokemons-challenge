@@ -1,12 +1,13 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { useNavigate  } from "react-router-dom"
 import styled from 'styled-components'
 
 export default function CardPokemon(props) {
 
+    const navigate = useNavigate();
+
     return (
-        <Link to={`/poke-page`}>
-            <DivCard onClick={() => props.onSelect(props.number)}>
+            <DivCard onClick={() => navigate(`/poke-page/${props.number}`)}>
 
                 <section className="card-section" style={{ background: `var(--color-type-${props.type1})` }}>
 
@@ -38,7 +39,6 @@ export default function CardPokemon(props) {
                 </section>
 
             </DivCard>
-        </Link>
     )
 
 };

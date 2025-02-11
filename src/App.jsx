@@ -8,15 +8,12 @@ import { fetchAllPokemons, fetch10Pokemons } from './services/consultaPoke';
 import { AppRoutes } from './routes/AppRoutes';
 import { BrowserRouter } from 'react-router-dom';
 
-
 function App() {
 
   const [pokemons, setPokemons] = useState([]);
   const [pokemonsInput, setPokemonsInput] = useState([]);
   const [pokemonsInit, setPokemonsInit] = useState([]);
   const [pokemonsLoaded, setPokemonsLoaded] = useState();
-  const [pokemonSelected, setPokemonSelected] = useState();
-  
 
   const handleSearchResult = (pokemon) => {
     setPokemonsLoaded(pokemon); // Atualiza o estado com o Pokémon encontrado
@@ -30,12 +27,9 @@ function App() {
     setPokemonsLoaded(pokemons); // Atualiza o estado com o Pokémon encontrado
   };
 
-  const handleSelected= (id) =>{
-    setPokemonSelected(pokemons.find((pokemon) => pokemon.id === id))
-  }
-
   useEffect(() => {
     const loadPokemons = async () => {
+
       // consulta dos 10 primeiros para carregamento rápido
       const InitPokemons = await fetch10Pokemons();
       setPokemonsInit(InitPokemons);
@@ -43,8 +37,6 @@ function App() {
       //consulta de todos os pokemons para input e botão see more
       const allPokemonsData = await fetchAllPokemons();
       setPokemons(allPokemonsData);
-
-      //console.log(data);
 
       // Atualiza o estado dos pokemons no input autocomplete
       const filtrados = allPokemonsData.map(allPokemonsData => ({
@@ -66,25 +58,21 @@ function App() {
     setPokemonsLoaded(pokemons)
   }, [pokemons]);
 
-  useEffect(() =>{
-    console.log('Alteração pokemon selected', pokemonSelected)
-  },[pokemonSelected])
-
   return (
     <ThemeProvider>
       <ThemedGlobalStyle />
       <BrowserRouter>
+      
         <header>
-          <img id='logo' src="logo-pokemon.png" alt="Logo pokemon" />
-          <img id='pokeball' src="img-pokebola-header.png" alt="pokebola" />
+          <img id='logo' src="/logo-pokemon.png" alt="Logo pokemon" />
+          <img id='pokeball' src="/img-pokebola-header.png" alt="pokebola" />
         </header>
+
         <main>
           <ButtonToggleTheme />
           <AppRoutes list={pokemonsInput} onSearchResult={handleSearchResult}
             onTypeSearch={handleTypeSearch} onReturn={returnAll}
             pokemons={pokemonsLoaded}
-            onSelect={handleSelected}
-            pokemonSelected={pokemonSelected}
           />
         </main>
         

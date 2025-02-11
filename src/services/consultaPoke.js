@@ -1,7 +1,3 @@
-// pegar todos os pokemons https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0
-
-// pegar as informações basicas de a cordo com o número do pokemon https://pokeapi.co/api/v2/pokemon/1/
-
 import axios from "axios";
 import { consultaInfosCard } from "./pokeInfoCard";
 
