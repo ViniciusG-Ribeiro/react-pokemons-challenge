@@ -10,7 +10,7 @@ async function fetchAllPokemons() {
         // const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=1025&offset=0`)
 
 
-        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=1025&offset=0`)
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=1302&offset=0`)
 
 
         //  console.log("pokemons results",response.data.results)
@@ -37,6 +37,8 @@ async function fetch10Pokemons() {
         let pokes = await Promise.all(
             consultaInfosCard(response.data.results)
         );
+
+        console.log("pokemons pokes",pokes)
 
         return pokes;
 

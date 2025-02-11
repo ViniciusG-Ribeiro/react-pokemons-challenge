@@ -73,6 +73,10 @@
     font-size: 1.5em;
 }
 
+a{
+    text-decoration: none;
+}
+
 @media (max-width: 1169px) {
     .container-cards{
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

@@ -8,7 +8,7 @@ import CardPokemon from "./cardPokemon";
 
 
 
-export default function SectionShowCase({ pokemons }) {
+export default function SectionShowCase({ pokemons, onSelect }) {
 
   const [quantityViewed, setQuantityViewed] = useState(10);
   const [pokemonViewed, setPokemonViewed] = useState([]);
@@ -34,6 +34,8 @@ export default function SectionShowCase({ pokemons }) {
               type2={pokemon.type2 || ""}
               weight={pokemon.weight}
               stats={[pokemon.stats_hp, pokemon.stats_attack, pokemon.stats_defense, pokemon.stats_speed]}
+              number={pokemon.id}
+              onSelect={onSelect}
             />
           ))}
         </div>

@@ -45,8 +45,11 @@ export function consultaInfosCard(results) {
                 stats_special_attack: responseDetails.stats[3].base_stat,
                 stats_special_defense: responseDetails.stats[4].base_stat,
                 stats_speed: responseDetails.stats[5].base_stat,
-                abilities: responseDetails.abilities,
-                moves: responseDetails.moves,
+                abilities: responseDetails.abilities.map((a) => a.ability),
+                // abilities: responseDetails.abilities,
+                moves: responseDetails.moves.map((m) => m.move),
+                // moves: responseDetails.moves,
+                cry: responseDetails.cries.legacy,
             }
 
 
