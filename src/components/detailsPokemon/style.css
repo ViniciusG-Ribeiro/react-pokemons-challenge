@@ -1,0 +1,55 @@
+.container-type-details{
+    justify-self: center;
+    margin: 20px 0px;
+}
+
+.container-pokemon-details{
+    border: 1px solid white; 
+    border-radius: 10px;
+    background: url('/fundo-painel.jpg') no-repeat center center / cover;
+    display: flex;
+    justify-content: center;
+    min-width: 350px;
+}
+
+.img-pokemon-details{
+    height: 95%;
+    width: 95% ;
+}
+
+.tittle-details {
+    text-transform: uppercase;
+    justify-self: center;
+    margin-bottom: 35px;
+}
+
+audio{
+    width: 100%;
+}
+
+.container-stats-details{
+    margin-top: 20px ;
+    justify-self: center;
+    justify-items: center;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 15px;
+}
+
+.container-stats-details h3{
+    font-size: 1.5em;
+}
+
+@media (max-width: 1349px) {
+
+    .container-pokemon-details{
+        justify-self: center;
+        max-width: 50%;
+    }
+
+    .audio{
+        justify-self: center;
+        width: 65%;
+    }
+}

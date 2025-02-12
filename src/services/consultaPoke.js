@@ -88,5 +88,23 @@ async function typeSearch(number) {
 
 }
 
+async function abilitesAndMovesSearch(name,url) {
+    try {
+        const response = await axios.get(url)
 
-export{fetchAllPokemons, fetch10Pokemons, searchPokemon, typeSearch }
+
+        const englishEntry = response.data.effect_entries.find(entry => entry.language.name ==="en");
+
+        const descriptionSkill = englishEntry ? englishEntry.short_effect : null;
+
+
+        return ([name,descriptionSkill]);
+
+    } catch (error) {
+        console.error(`Error fetching Pokemon: ${error.message}`)
+    }
+
+}
+
+
+export{fetchAllPokemons, fetch10Pokemons, searchPokemon, typeSearch, abilitesAndMovesSearch }

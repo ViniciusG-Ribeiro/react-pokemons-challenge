@@ -5,7 +5,7 @@ import './style.css'
 import CardPokemon from "./cardPokemon";
 
 
-
+// OBS: por algum motivo o botão está ficando em outro lugar no meu IOS, mas o restante funciona e no pc está normal
 
 
 export default function SectionShowCase({ pokemons}) {

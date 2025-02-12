@@ -1,11 +1,18 @@
-import { useParams, Link } from "react-router-dom";
-import { searchPokemon } from "../services/consultaPoke";
+import { useParams} from "react-router-dom";
+import { abilitesAndMovesSearch, searchPokemon } from "../services/consultaPoke";
 import { useEffect, useState } from "react";
+import SectionDetailsPokemon from "../components/detailsPokemon/sectionDetailsPokemon";
+
+// Página funcina quando é direcionada pela principal ou se simplesmente digitar o número do pokemon na URL.  
+
+// OBS: Melhoria futura seria colocar o input funcionar nesta página também 😊.
 
 export default function PokePage({ pokemons = [] }) {
     const { id } = useParams(); // Captura o ID da URL
     const [pokemonSelected, setPokemonSelected] = useState(null);
     const [pokemonNotFound, setPokemonNotFound] = useState(false);
+    const [abilitiesDetails, setAbilitiesDetails] = useState([]);
+    const [movesDetails, setMovesDetails] = useState([]);
 
     useEffect(() => {
         const fetchPokemon = async () => {
@@ -23,7 +30,7 @@ export default function PokePage({ pokemons = [] }) {
                         console.log("buscou na api")
                         setPokemonSelected(newPokemon[0]);
                         setPokemonNotFound(false);
-                    } else{
+                    } else {
                         setPokemonNotFound(true);
                     }
 
@@ -31,10 +38,51 @@ export default function PokePage({ pokemons = [] }) {
                     console.error("Erro ao buscar Pokémon:", error);
                 }
             }
+
         }
 
         fetchPokemon();
+
     }, [id])
+
+    // se encontrar o pokemon vamos pegar a lista de movimentos e habilidades para buscar a descrição delas.
+
+    useEffect(() => {
+        if (!pokemonSelected || !pokemonSelected.abilities || !pokemonSelected.moves) return; // Evita erro quando `pokemonSelected` é null
+
+        console.log("entrou para buscar habilidades")
+
+        const fetchAbilities = async () =>{
+            const abilitesPromises = pokemonSelected.abilities.map(async (item) => {
+                return await abilitesAndMovesSearch(item.name, item.url);
+            });
+
+            const abilities  = await Promise.all(abilitesPromises);
+            setAbilitiesDetails(abilities);
+
+            // console.log("Habilidades carregadas:", abilities);
+        }
+
+        const fetchMoves = async () => {
+            try {
+                const movesPromises = pokemonSelected.moves.map(async (item) => {
+                    return await abilitesAndMovesSearch(item.name, item.url);
+                });
+
+                const moves = await Promise.all(movesPromises);
+                setMovesDetails(moves);
+
+                // console.log("movimentos carregados:", moves);
+
+            } catch (error) {
+                console.error("Erro ao buscar habilidades:", error);
+            }
+        };
+
+        fetchAbilities();
+        fetchMoves();
+
+    }, [pokemonSelected])
 
     useEffect(() => {
         console.log('Alteração pokemon selected', pokemonSelected)
@@ -49,16 +97,21 @@ export default function PokePage({ pokemons = [] }) {
     }
 
     return (
-        <div>
-            <Link to='/' >Voltar para home</Link>
-            <h1>{pokemonSelected.nome}</h1>
-            <img src={pokemonSelected.image} alt={pokemonSelected.nome} />
-            <p>Tipo: {pokemonSelected.type1} {pokemonSelected.type2 && `, ${pokemonSelected.type2}`}</p>
-            <p>Peso: {pokemonSelected.weight / 10} kg</p>
-            <p>HP: {pokemonSelected.stats_hp}</p>
-            <p>Ataque: {pokemonSelected.stats_attack}</p>
-            <p>Defesa: {pokemonSelected.stats_defense}</p>
-            <p>Velocidade: {pokemonSelected.stats_speed}</p>
-        </div>
+
+        <SectionDetailsPokemon
+            image={pokemonSelected.image}
+            type1={pokemonSelected.type1}
+            type2={pokemonSelected.type2}
+            number={pokemonSelected.id}
+            name={pokemonSelected.nome}
+            cry={pokemonSelected.cry}
+            weight={pokemonSelected.weight / 10}
+            height={pokemonSelected.height / 10}
+            hp={pokemonSelected.stats_hp}
+            attack={pokemonSelected.stats_attack}
+            defense={pokemonSelected.stats_defense}
+            speed={pokemonSelected.stats_speed}
+            abilities={abilitiesDetails}
+            moves={movesDetails} />
     );
 }
