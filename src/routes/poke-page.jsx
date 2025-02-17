@@ -20,14 +20,15 @@ export default function PokePage({ pokemons = [] }) {
 
             if (foundPokemon) {
                 setPokemonSelected(foundPokemon);
-                console.log("achou na lista")
+                // console.log("achou na lista")
+                
             } else {
-                console.log("não achou na lista, buscando na api")
+                // console.log("não achou na lista, buscando na api")
                 try {
                     const newPokemon = await searchPokemon(id);
 
                     if (newPokemon && newPokemon.length > 0) {
-                        console.log("buscou na api")
+                        // console.log("buscou na api")
                         setPokemonSelected(newPokemon[0]);
                         setPokemonNotFound(false);
                     } else {
@@ -50,7 +51,6 @@ export default function PokePage({ pokemons = [] }) {
     useEffect(() => {
         if (!pokemonSelected || !pokemonSelected.abilities || !pokemonSelected.moves) return; // Evita erro quando `pokemonSelected` é null
 
-        console.log("entrou para buscar habilidades")
 
         const fetchAbilities = async () =>{
             const abilitesPromises = pokemonSelected.abilities.map(async (item) => {
@@ -84,9 +84,9 @@ export default function PokePage({ pokemons = [] }) {
 
     }, [pokemonSelected])
 
-    useEffect(() => {
-        console.log('Alteração pokemon selected', pokemonSelected)
-    }, [pokemonSelected])
+    // useEffect(() => {
+    //      console.log('Alteração pokemon selected', pokemonSelected)
+    // }, [pokemonSelected])
 
     if (pokemonNotFound) {
         return <h2>Pokémon não encontrado!</h2>;

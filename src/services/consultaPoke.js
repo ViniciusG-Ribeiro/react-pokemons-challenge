@@ -34,7 +34,7 @@ async function fetch10Pokemons() {
             consultaInfosCard(response.data.results)
         );
 
-        console.log("pokemons pokes",pokes)
+        // console.log("pokemons pokes",pokes)
 
         return pokes;
 
@@ -105,6 +105,5 @@ async function abilitesAndMovesSearch(name,url) {
     }
 
 }
-
 
 export{fetchAllPokemons, fetch10Pokemons, searchPokemon, typeSearch, abilitesAndMovesSearch }
