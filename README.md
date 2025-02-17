@@ -1,6 +1,8 @@
 # 📜 Pokémon Explorer
 Um projeto interativo para explorar informações sobre diferentes Pokémon, exibindo detalhes como estatísticas, tipos e peso. A aplicação utiliza uma API externa para buscar e exibir os dados de forma dinâmica.
 
+<img src="public/preview.gif">
+
 ## ✨ Funcionalidades
 
 - Exibição de uma lista de Pokémon com imagens e cores temáticas de acordo com seus tipos.
@@ -10,6 +12,15 @@ Um projeto interativo para explorar informações sobre diferentes Pokémon, exi
 - Consumo de API com axios e gerenciamento de requisições assíncronas com react-query.
 
 ## 🛠️ Tecnologias Utilizadas
+
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" width="50" />
+  &nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/reactrouter/reactrouter-original-wordmark.svg" width="50" />
+  &nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" width="50" />
+</p>
+
 
 | Tecnologia        | Motivação                                                |
 |-------------------|----------------------------------------------------------|
@@ -25,9 +36,9 @@ Um projeto interativo para explorar informações sobre diferentes Pokémon, exi
 1. Uso de styled-components: Escolhido para facilitar a aplicação do tema dinâmico e manter os estilos encapsulados nos componentes.
 2. Uso de axios: Escolhido por sua facilidade de configuração e melhor tratamento de requisições do que o fetch padrão.
 3. Estrutura modularizada: Componentes foram divididos de forma reutilizável, seguindo boas práticas de organização de código.
-4. Ao abrir a página a mesma faz 2 requisições, uma com a quantidade mínima de objetos necessários e outra buscando todos os objetos. Assim deixando a página carregar mais rápido e ficando com a navegação mais fluida.
-5. Ao selecionar um Pokémon você será redirecionado para outra página na qual irá verificar as informações do Pokémon em uma variável para não precisar fazer outra busca por API.
-6. Foi adicionado o número do Pokémon na URL para caso o usuário queira mudar de Pokémon sem voltar a página principal ou simplesmente queira mandar o link para outra pessoa visualizar, a página irá verificar se as informações do Pokémon escolhido já foi buscada anteriormente, caso não ela fará uma busca unitária via API do Pokémon selecionado.
+4. Ao abrir a página, a mesma faz 2 requisições, uma com a quantidade mínima de objetos necessários e outra buscando todos os objetos. Assim deixando a página carregar mais rápido e ficando com a navegação mais fluida.
+5. Ao selecionar um Pokémon você será redirecionado para outra página, na qual irá verificar as informações do Pokémon em uma variável para não precisar fazer outra busca por API.
+6. Foi adicionado o número do Pokémon na URL para caso o usuário queira mudar de Pokémon sem voltar a página principal, ou simplesmente queira mandar o link para outra pessoa visualizar, a página irá verificar se as informações do Pokémon escolhido já foi buscada anteriormente, caso não, ela fará uma busca unitária via API do Pokémon selecionado.
 
 # 🚀 Como Executar o Projeto
 
